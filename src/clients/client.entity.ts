@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Client {
@@ -12,13 +18,13 @@ export class Client {
   email: string;
 
   @Column()
-  phone: string;
-
-  @Column()
-  cpfCnpj: string; 
+  cpfCnpj: string;
 
   @Column({ nullable: true })
-  postalCode: string;
+  mobilePhone: string;
+
+  @Column({ nullable: true, type: 'float' })
+  incomeValue: number;
 
   @Column({ nullable: true })
   address: string;
@@ -30,7 +36,19 @@ export class Client {
   province: string;
 
   @Column({ nullable: true })
-  asaasAccountId: string; 
+  postalCode: string;
+
+  @Column({ nullable: true })
+  loginEmail: string;
+
+  @Column({ nullable: true })
+  birthDate: string;
+
+  @Column({ nullable: true })
+  companyType: string;
+
+  @Column({ nullable: true })
+  asaasAccountId: string;
 
   @CreateDateColumn()
   createdAt: Date;

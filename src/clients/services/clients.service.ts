@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Client } from '../client.entity';
@@ -18,18 +18,20 @@ export class ClientsService {
     const asaasClient = await this.asaasService.createSubAccount({
       name: createClientDto.name,
       email: createClientDto.email,
-      phone: createClientDto.phone,
       cpfCnpj: createClientDto.cpfCnpj,
-      postalCode: createClientDto.postalCode,
+      mobilePhone: createClientDto.mobilePhone,
+      incomeValue: createClientDto.incomeValue,
       address: createClientDto.address,
       addressNumber: createClientDto.addressNumber,
       province: createClientDto.province,
+      postalCode: createClientDto.postalCode,
+      birthDate: createClientDto.birthDate,
+      companyType: createClientDto.companyType,
     });
 
-    
     const client = this.clientRepository.create({
       ...createClientDto,
-      asaasAccountId: asaasClient.id, // Vincula ao ASAAS
+      asaasAccountId: asaasClient.id, 
     });
 
     return this.clientRepository.save(client);
@@ -44,11 +46,16 @@ export class ClientsService {
   }
 
   async update(id: number, updateClientDto: Partial<CreateClientDto>): Promise<Client> {
+    const client = await this.findOne(id);
+    if (!client) throw new NotFoundException('Cliente não encontrado');
     await this.clientRepository.update(id, updateClientDto);
     return this.findOne(id);
   }
-
+  
   async remove(id: number): Promise<void> {
+    const client = await this.findOne(id);
+    if (!client) throw new NotFoundException('Cliente não encontrado');
     await this.clientRepository.delete(id);
   }
+  
 }

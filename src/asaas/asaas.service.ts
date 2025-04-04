@@ -5,17 +5,17 @@ dotenv.config();
 
 @Injectable()
 export class AsaasService {
-  private readonly apiUrl = 'https://api.asaas.com/';
+  private readonly apiUrl = 'https://api-sandbox.asaas.com/v3/accounts';
   private readonly apiKey = process.env.ASAAS_API_KEY; 
 
   async createSubAccount(data: any): Promise<any> {
-    console.log('Enviando token:', this.apiKey); 
+    // console.log('Enviando token:', this.apiKey); 
 
     try {
       const response = await axios.post(this.apiUrl, data, {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.apiKey}`,
+          'access_token': this.apiKey,
         },
       });
       return response.data;
