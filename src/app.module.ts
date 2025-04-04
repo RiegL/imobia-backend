@@ -21,7 +21,7 @@ import { ReportsModule } from './reports/reports.module';
     }),
     ClientsModule,
     AsaasModule,
-    ReportsModule
+    ReportsModule,
   ],
 })
 export class AppModule {}
