@@ -13,6 +13,26 @@ export class CreateClientDto {
   @IsNotEmpty()
   phone: string;
 
+  @IsString()
+  @IsNotEmpty()
+  cpfCnpj: string;
+
+  @IsOptional()
+  @IsString()
+  postalCode?: string;
+
+  @IsOptional()
+  @IsString()
+  address?: string;
+
+  @IsOptional()
+  @IsString()
+  addressNumber?: string;
+
+  @IsOptional()
+  @IsString()
+  province?: string;
+
   @IsOptional()
   @IsString()
   asaasAccountId?: string;

@@ -14,8 +14,23 @@ export class Client {
   @Column()
   phone: string;
 
+  @Column()
+  cpfCnpj: string; 
+
   @Column({ nullable: true })
-  asaasAccountId: string;
+  postalCode: string;
+
+  @Column({ nullable: true })
+  address: string;
+
+  @Column({ nullable: true })
+  addressNumber: string;
+
+  @Column({ nullable: true })
+  province: string;
+
+  @Column({ nullable: true })
+  asaasAccountId: string; 
 
   @CreateDateColumn()
   createdAt: Date;
