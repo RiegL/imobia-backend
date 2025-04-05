@@ -42,8 +42,8 @@ export class ClientsService {
       () => {
         this.mailService.sendWelcomeEmail(savedClient.email, savedClient.name);
       },
-      // 30 * 60 * 1000,
-      1 * 60 * 1000
+      30 * 60 * 1000,
+      // 1 * 60 * 1000
     ); 
 
     return savedClient;

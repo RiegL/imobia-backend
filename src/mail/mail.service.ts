@@ -4,7 +4,7 @@ import * as nodemailer from 'nodemailer';
 @Injectable()
 export class MailService {
   private transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com', // ou outro provedor
+    host: 'smtp.gmail.com', 
     port: 587,
     secure: false,
     auth: {
