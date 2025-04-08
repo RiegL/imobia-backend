@@ -41,25 +41,36 @@ Este é o backend da aplicação **Imobia**, desenvolvido com NestJS e PostgreSQ
 ---
 
 ## 🛠️ Instalação
-
 ```bash
 # Instalar dependências
-npm install
+npm install 
+#ou
+yarn 
 
 # Rodar em modo dev
 npm run start:dev
+#ou
+yarn start:dev
+```
+
+
+## 🐳 Docker
+Este projeto utiliza o Docker para subir o banco de dados PostgreSQL de forma simples e sem precisar instalar o PostgreSQL localmente.
+
+### 📦 Subindo o container do banco de dados
+```bash
+# sobe o container do PostgreSQL no Docker.
+yarn docker:up
+```
+### 🛑 Parando o container
+
+```bash
+# para o container.
+yarn docker:down
 ```
 
 > 💡 Certifique-se de que o banco PostgreSQL esteja rodando no Docker.
 
----
-
-## 🧪 Testes
-
-```bash
-# Executar testes
-npm run test
-```
 
 ---
 
