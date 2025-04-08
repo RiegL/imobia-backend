@@ -1,75 +1,76 @@
-# 📦 Imobia - API (Back-end)
 
-Este é o back-end da aplicação **Imobia**, desenvolvido com [NestJS](https://nestjs.com/) e [PostgreSQL](https://www.postgresql.org/). A API gerencia os clientes e integra com o serviço de subcontas da [Asaas](https://www.asaas.com/).
+# 📦 Imobia API - Backend (NestJS + PostgreSQL)
+
+Este é o backend da aplicação **Imobia**, desenvolvido com NestJS e PostgreSQL. Ele fornece APIs para gerenciamento de clientes, integração com o ASAAS e geração de relatórios.
 
 ---
 
 ## 🚀 Funcionalidades
 
-- ✅ CRUD de clientes
-- ✅ Integração com a API ASAAS (criação de subcontas)
-- ✅ Relatórios e métricas (clientes por cidade, total, etc.)
-- ✅ Envio de e-mail de boas-vindas após cadastro
-- ✅ Documentação da API
-- ✅ Testes automatizados em pontos-chave
+- CRUD completo de clientes
+- Integração com ASAAS (criação de subconta)
+- Envio de e-mail de boas-vindas 30 minutos após cadastro
+- Relatórios com dados e gráficos:
+  - Total de clientes
+  - Média de renda
+  - Clientes por mês
+  - Clientes por cidade
+  - Tipos de empresa
+- Documentação da API via Postman
 
 ---
 
-## 📦 Instalação
+## 📂 Estrutura de Módulos
+
+- `clients/` - CRUD + integração com ASAAS + relatórios
+- `mail/` - envio de e-mails via Nodemailer
+- `asaas/` - módulo para comunicação com a API do ASAAS
+
+---
+
+## 🧪 Rotas de Relatórios
+
+| Rota                                   | Descrição                        |
+|----------------------------------------|----------------------------------|
+| `GET /clients/report/total-clients`    | Retorna o total de clientes     |
+| `GET /clients/report/income-stats`     | Média, mínimo, máximo da renda  |
+| `GET /clients/report/clients-per-month`| Clientes cadastrados por mês    |
+| `GET /clients/report/clients-by-city`  | Clientes agrupados por cidade   |
+| `GET /clients/report/company-types`    | Quantidade por tipo de empresa  |
+
+---
+
+## 🛠️ Instalação
 
 ```bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/imobia-backend.git
-cd imobia-backend
-
-# Instale as dependências
+# Instalar dependências
 npm install
 
-# Crie o arquivo .env
-cp .env.example .env
-# Edite o .env com suas configurações
-
-# Suba o PostgreSQL (caso esteja usando Docker)
-docker-compose up -d
-
-# Rode as migrations do Prisma
-npx prisma migrate dev
-
-# Inicie a API
+# Rodar em modo dev
 npm run start:dev
 ```
+
+> 💡 Certifique-se de que o banco PostgreSQL esteja rodando no Docker.
 
 ---
 
 ## 🧪 Testes
 
 ```bash
+# Executar testes
 npm run test
 ```
 
 ---
 
-## 📫 API Endpoints
+## 🔗 ASAAS
 
-- `POST /clients` – Cadastra cliente e cria subconta ASAAS
-- `GET /clients` – Lista todos os clientes
-- `PUT /clients/:id` – Atualiza um cliente
-- `DELETE /clients/:id` – Remove um cliente
-- `GET /reports/*` – Relatórios com dados
+A integração com o ASAAS exige uma `API_KEY` fornecida pelo avaliador. Esta key deve ser adicionada ao `.env`.
 
 ---
 
-## 🔐 Variáveis de Ambiente
+## ✅ Requisitos
 
-```env
-DATABASE_URL=postgresql://user:password@localhost:5432/imobia
-ASAAS_API_KEY=sua-chave-aqui
-EMAIL_SERVICE_USER=seuemail@gmail.com
-EMAIL_SERVICE_PASS=sua-app-password
-```
-
----
-
-## 👨‍💻 Autor
-
-Desenvolvido por [Seu Nome](https://github.com/seu-usuario)
+- Node.js
+- Docker (para PostgreSQL)
+- NestJS CLI
