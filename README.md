@@ -38,7 +38,16 @@ Este é o backend da aplicação **Imobia**, desenvolvido com NestJS e PostgreSQ
 | `GET /clients/report/clients-by-city`  | Clientes agrupados por cidade   |
 | `GET /clients/report/company-types`    | Quantidade por tipo de empresa  |
 
+
+## 📬 Postman
+
+A coleção  está diponivel na raiz do projeto, com o nome de 
+  - imobia.postman.json
+
+baixar e importar no postman
+
 ---
+
 ## 🐳 Docker
 Este projeto utiliza o Docker para subir o banco de dados PostgreSQL de forma simples e sem precisar instalar o PostgreSQL localmente.
 
