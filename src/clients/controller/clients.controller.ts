@@ -21,6 +21,7 @@ export class ClientsController {
     return this.clientsService.findOne(id);
   }
 
+
   @Delete(':id')
   async remove(@Param('id') id: number) {
     return this.clientsService.remove(id);

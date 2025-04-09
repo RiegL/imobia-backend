@@ -37,7 +37,7 @@ export class ClientsService {
 
     const savedClient = await this.clientRepository.save(client);
 
-    // 👇 Aqui é onde você coloca o envio de e-mail com delay de 30 minutos:
+    
     setTimeout(
       () => {
         this.mailService.sendWelcomeEmail(savedClient.email, savedClient.name);
