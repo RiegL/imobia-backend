@@ -7,7 +7,7 @@ import { AsaasService } from 'src/asaas/asaas.service';
 import { MailService } from 'src/mail/mail.service';
 
 @Injectable()
-export class ClientsService {
+export class CreateService {
   constructor(
     @InjectRepository(Client)
     private readonly clientRepository: Repository<Client>,
@@ -15,7 +15,7 @@ export class ClientsService {
     private readonly mailService: MailService
   ) {}
 
-  async create(createClientDto: CreateClientDto): Promise<Client> {
+  async execute(createClientDto: CreateClientDto): Promise<Client> {
     const asaasClient = await this.asaasService.createSubAccount({
       name: createClientDto.name,
       email: createClientDto.email,
@@ -47,29 +47,5 @@ export class ClientsService {
     ); 
 
     return savedClient;
-  }
-
-  async findAll(): Promise<Client[]> {
-    return this.clientRepository.find();
-  }
-
-  async findOne(id: number): Promise<Client> {
-    return this.clientRepository.findOne({ where: { id } });
-  }
-
-  async update(
-    id: number,
-    updateClientDto: Partial<CreateClientDto>,
-  ): Promise<Client> {
-    const client = await this.findOne(id);
-    if (!client) throw new NotFoundException('Cliente não encontrado');
-    await this.clientRepository.update(id, updateClientDto);
-    return this.findOne(id);
-  }
-
-  async remove(id: number): Promise<void> {
-    const client = await this.findOne(id);
-    if (!client) throw new NotFoundException('Cliente não encontrado');
-    await this.clientRepository.delete(id);
   }
 }
